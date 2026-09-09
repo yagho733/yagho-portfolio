@@ -59,3 +59,9 @@ footer{width:min(100%,var(--max));margin:auto;padding:34px var(--pad) 46px}.foot
 @media(max-width:390px){.case-heading h3{font-size:31px}.section-intro h2,.manifesto h2,.about h2,.contact h2{font-size:36px}.contact-marquee span{font-size:40px}}
 
 .case{scroll-margin-top:92px}
+
+/* Marquee final — CSS puro para Safari/iPhone */
+.contact-marquee .contact-track{display:flex;align-items:center;flex:none;width:max-content;white-space:nowrap;will-change:transform;animation:contactLoop 18s linear infinite!important;transform:translate3d(0,0,0)}
+@keyframes contactLoop{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+@media(max-width:720px){.contact-marquee .contact-track{animation-duration:8.5s!important}.contact-marquee span{font-size:46px;padding-right:26px}.contact-marquee i{font-size:24px;margin-right:26px}}
+@media(prefers-reduced-motion:reduce){.contact-marquee .contact-track{animation:none!important;transform:none!important}}
