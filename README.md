@@ -1,6 +1,6 @@
-# Yagho Rosa — Portfólio Web
+# Yagho Sites — Portfólio Web
 
-Site oficial de portfólio e apresentação comercial de Yagho Rosa, Desenvolvedor Web.
+Site oficial de portfólio e apresentação comercial de Yagho Sites, Desenvolvedor Web.
 
 ## Site online
 
@@ -26,4 +26,4 @@ HTML5, CSS3 e JavaScript, com publicação pelo GitHub Pages.
 GitHub: https://github.com/yagho733
 Instagram: https://www.instagram.com/yaghosite/
 
-Desenvolvido por Yagho Rosa.
+Desenvolvido por Yagho Sites.
