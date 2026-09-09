@@ -13,3 +13,14 @@ if(fine&&!reduce){const stage=qs('.hero-stage');if(stage){const depthEls=qsa('[d
 if(fine&&!reduce){qsa('[data-case] .case-media').forEach(media=>{const img=qs('img',media);media.addEventListener('pointermove',e=>{const r=media.getBoundingClientRect(),nx=(e.clientX-r.left)/r.width-.5,ny=(e.clientY-r.top)/r.height-.5;img.style.translate=`${nx*-8}px ${ny*-5}px`});media.addEventListener('pointerleave',()=>img.style.translate='0 0')})}
 qsa('.faq-list details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)qsa('.faq-list details').forEach(other=>{if(other!==d)other.open=false})}));
 qs('#year').textContent=new Date().getFullYear();qs('#leadForm')?.addEventListener('submit',e=>{e.preventDefault();const name=qs('#name').value.trim(),type=qs('#type').value,msg=qs('#message').value.trim();const text=`Olá Yagho, vim pelo seu site.\n\nMeu nome: ${name}\nTipo de negócio: ${type}\n\nProjeto: ${msg}`;window.open(`https://wa.me/5553999563554?text=${encodeURIComponent(text)}`,'_blank','noopener')});
+
+// Loop contínuo do marquee de contato — independente de CSS/reduced-motion.
+const contactTrack=qs('.contact-track');
+if(contactTrack){
+  contactTrack.style.setProperty('animation','none','important');
+  let marqueeOffset=0,marqueeLast=0,marqueeWidth=0;
+  const measureMarquee=()=>{marqueeWidth=contactTrack.scrollWidth/2};
+  measureMarquee();new ResizeObserver(measureMarquee).observe(contactTrack);
+  const runMarquee=now=>{if(!marqueeLast)marqueeLast=now;const dt=Math.min((now-marqueeLast)/1000,.05);marqueeLast=now;const speed=innerWidth<=720?44:32;if(marqueeWidth>0){marqueeOffset=(marqueeOffset+speed*dt)%marqueeWidth;contactTrack.style.setProperty('transform',`translate3d(${-marqueeOffset}px,0,0)`,'important')}requestAnimationFrame(runMarquee)};
+  requestAnimationFrame(runMarquee);
+}
