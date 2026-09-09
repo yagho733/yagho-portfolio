@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://yagho733.github.io/yagho-portfolio/sitemap.xml

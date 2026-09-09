@@ -2,6 +2,10 @@
 
 Site oficial de portfólio e apresentação comercial de Yagho Rosa, Desenvolvedor Web.
 
+## Site online
+
+https://yagho733.github.io/yagho-portfolio/
+
 ## Objetivo
 
 Apresentar projetos, serviços, processo de trabalho e canais de contato em uma experiência rápida, responsiva e focada em conversão.
@@ -15,7 +19,7 @@ Apresentar projetos, serviços, processo de trabalho e canais de contato em uma 
 
 ## Tecnologias
 
-HTML5, CSS3 e JavaScript, com deploy pela Vercel.
+HTML5, CSS3 e JavaScript, com publicação pelo GitHub Pages.
 
 ## Contato
 
