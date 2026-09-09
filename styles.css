@@ -65,3 +65,61 @@ footer{width:min(100%,var(--max));margin:auto;padding:34px var(--pad) 46px}.foot
 @keyframes contactLoop{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
 @media(max-width:720px){.contact-marquee .contact-track{animation-duration:8.5s!important}.contact-marquee span{font-size:46px;padding-right:26px}.contact-marquee i{font-size:24px;margin-right:26px}}
 @media(prefers-reduced-motion:reduce){.contact-marquee .contact-track{animation:none!important;transform:none!important}}
+/* Patch final: marquee continuo e legivel no mobile */
+@media (max-width:720px){
+  .contact-marquee{
+    height:86px;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);
+    mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);
+  }
+  .contact-marquee .contact-track{
+    gap:0;
+    animation:contactLoop 12s linear infinite!important;
+  }
+  .contact-marquee span{
+    flex:none;
+    font-size:clamp(25px,7.15vw,29px);
+    letter-spacing:-.045em;
+    padding-right:22px;
+    -webkit-text-stroke:1px rgba(255,255,255,.22);
+  }
+  .contact-marquee i{
+    flex:none;
+    font-size:17px;
+    margin-right:22px;
+  }
+}
+/* Mobile: frase completa sempre visivel durante o loop */
+@media (max-width:720px){
+  .contact-marquee{
+    height:86px;
+    display:grid;
+    place-items:center;
+    overflow:hidden;
+    -webkit-mask-image:none;
+    mask-image:none;
+  }
+  .contact-marquee .contact-track{
+    width:100%;
+    justify-content:center;
+    animation:mobileWholePhrase 5.5s ease-in-out infinite alternate!important;
+    will-change:transform;
+  }
+  .contact-marquee span{
+    display:none;
+  }
+  .contact-marquee span:first-of-type{
+    display:block;
+    flex:none;
+    padding:0;
+    font-size:clamp(24px,7vw,28px);
+    letter-spacing:-.045em;
+    white-space:nowrap;
+    -webkit-text-stroke:1px rgba(255,255,255,.22);
+  }
+  .contact-marquee i{display:none}
+}
+@keyframes mobileWholePhrase{
+  from{transform:translate3d(12px,0,0)}
+  to{transform:translate3d(-12px,0,0)}
+}
