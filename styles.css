@@ -43,3 +43,7 @@ footer{width:min(100%,var(--max));margin:auto;padding:34px var(--pad) 46px}.foot
 /* Fade visual real nos marquees para nunca parecer texto quebrado */
 .ticker,.contact-marquee{position:relative;-webkit-mask-image:none;mask-image:none}.ticker::before,.ticker::after,.contact-marquee::before,.contact-marquee::after{content:"";position:absolute;top:0;bottom:0;width:clamp(28px,7vw,84px);z-index:4;pointer-events:none}.ticker::before,.contact-marquee::before{left:0;background:linear-gradient(90deg,#080a0e,transparent)}.ticker::after,.contact-marquee::after{right:0;background:linear-gradient(270deg,#080a0e,transparent)}
 @media(max-width:720px){.ticker::before,.ticker::after{width:42px}.projects{padding-top:76px}.case:first-of-type{padding-top:24px}.case+.case{margin-top:4px}.case-heading h3{line-height:1.02}.case-info>p{line-height:1.65}}
+
+/* Acessibilidade visual e touch */
+:where(a,button,input,select,textarea,summary):focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+@media(hover:none){.case-media:hover img,.stage-card:hover img{transform:none;filter:none}.service-list article:hover{padding-left:0;padding-right:0}}
