@@ -24,3 +24,12 @@ if(contactTrack){
   const runMarquee=now=>{if(!marqueeLast)marqueeLast=now;const dt=Math.min((now-marqueeLast)/1000,.05);marqueeLast=now;const speed=innerWidth<=720?44:32;if(marqueeWidth>0){marqueeOffset=(marqueeOffset+speed*dt)%marqueeWidth;contactTrack.style.setProperty('transform',`translate3d(${-marqueeOffset}px,0,0)`,'important')}requestAnimationFrame(runMarquee)};
   requestAnimationFrame(runMarquee);
 }
+
+// Ticker do topo no mobile: mantém os rótulos inteiros, sem palavras cortadas nas bordas.
+const topTicker=qs('.ticker');
+if(topTicker){
+  topTicker.classList.add('mobile-static-ticker');
+  const tickerStyle=document.createElement('style');
+  tickerStyle.textContent=`@media(max-width:720px){.ticker.mobile-static-ticker{padding:0 14px}.ticker.mobile-static-ticker::before,.ticker.mobile-static-ticker::after{display:none}.ticker.mobile-static-ticker .ticker-track{animation:none!important;transform:none!important;width:100%;justify-content:space-between;gap:6px;font-size:6.4px;letter-spacing:.06em;will-change:auto}.ticker.mobile-static-ticker .ticker-track i{margin:0}.ticker.mobile-static-ticker .ticker-track>:nth-child(n+8){display:none}}`;
+  document.head.appendChild(tickerStyle);
+}
