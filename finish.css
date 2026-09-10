@@ -1,0 +1,68 @@
+/* FINAL POLISH — acabamento visual sem alterar a identidade base */
+:root{--pointer-x:50vw;--pointer-y:30vh}
+
+/* Profundidade discreta no desktop */
+@media (hover:hover) and (pointer:fine){
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(520px circle at var(--pointer-x) var(--pointer-y),rgba(200,255,82,.045),transparent 66%);opacity:.9}
+  main,footer,.nav{position:relative}
+  .btn::before,.nav-cta::before{content:"";position:absolute;top:-120%;left:-28%;width:28%;height:340%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);transform:rotate(18deg) translateX(-260%);transition:transform .72s var(--ease);pointer-events:none}
+  .btn:hover::before,.nav-cta:hover::before{transform:rotate(18deg) translateX(620%)}
+  .case-media::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;z-index:6;background:linear-gradient(90deg,transparent,var(--case-accent),transparent);opacity:0;transform:scaleX(.35);transition:opacity .35s,transform .65s var(--ease);pointer-events:none}
+  .case:hover .case-media::before{opacity:.82;transform:scaleX(1)}
+  .case:hover .case-heading h3{letter-spacing:-.045em}
+  .case-heading h3{transition:letter-spacing .45s var(--ease),color .3s}
+  .stack li{transition:padding .3s var(--ease),color .25s,border-color .25s}
+  .stack li:hover{padding-left:8px;color:var(--accent);border-color:rgba(200,255,82,.22)}
+}
+
+/* Leitura e hierarquia */
+.hero-title,.section-intro h2,.manifesto h2,.about h2,.contact h2{text-wrap:balance}
+.lead,.section-intro>p,.case-info>p,.manifesto-copy p,.about-big,.contact-copy>p{text-wrap:pretty}
+.hero-title .accent-line>span{text-shadow:0 0 42px rgba(200,255,82,.07)}
+.case-info>p{line-height:1.72}
+.service-list p{line-height:1.65}
+.manifesto-copy p{line-height:1.7}
+
+/* Projetos com acabamento de portfólio, não de template */
+.case-media{box-shadow:0 24px 70px rgba(0,0,0,.22);transition:border-color .3s,box-shadow .45s var(--ease)}
+.case:hover .case-media{box-shadow:0 32px 90px rgba(0,0,0,.34)}
+.case-heading h3{max-width:15ch}
+.case-cta{position:relative}
+.case-cta::after{content:"";position:absolute;left:0;bottom:-1px;width:0;height:1px;background:var(--case-accent);transition:width .5s var(--ease)}
+.case-cta:hover::after{width:100%}
+
+/* Serviços e FAQ mais táteis */
+.service-list article::after{content:"";position:absolute;left:0;top:50%;width:2px;height:0;background:var(--accent);transform:translateY(-50%);transition:height .35s var(--ease)}
+.service-list article:hover::after{height:44%}
+.faq-list details{transition:background .3s,border-color .3s}
+.faq-list details[open]{background:rgba(255,255,255,.018);border-color:rgba(200,255,82,.22)}
+.faq-list details[open] summary{color:#fff}
+
+/* Briefing com presença comercial */
+.contact form{position:relative;padding:0 22px 22px;border:1px solid var(--line);background:rgba(255,255,255,.012)}
+.contact form::before{content:"";position:absolute;left:-1px;top:-1px;width:54px;height:1px;background:var(--accent)}
+.form-head{height:54px}
+.form-btn{margin-top:22px}
+
+/* Pequenos detalhes que fazem o site parecer finalizado */
+.nav.scrolled{box-shadow:0 16px 60px rgba(0,0,0,.14)}
+.brand-mark{transition:border-color .25s,background .25s,box-shadow .25s}
+.brand:hover .brand-mark{border-color:rgba(200,255,82,.82);background:rgba(200,255,82,.05);box-shadow:0 0 28px rgba(200,255,82,.06)}
+.footer-grid a,.back-top{position:relative}
+.footer-grid a::after,.back-top::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:right;transition:transform .3s var(--ease)}
+.footer-grid a:hover::after,.back-top:hover::after{transform:scaleX(1);transform-origin:left}
+
+@media(max-width:720px){
+  body::before{display:none}
+  .case-media{box-shadow:0 18px 44px rgba(0,0,0,.2)}
+  .case:hover .case-media{box-shadow:0 18px 44px rgba(0,0,0,.2)}
+  .contact form{padding:0 16px 18px}
+  .form-head{height:50px}
+  .service-list article::after{display:none}
+  .hero-title .accent-line>span{text-shadow:none}
+}
+
+@media(prefers-reduced-motion:reduce){
+  body::before{display:none}
+  .btn::before,.nav-cta::before,.case-media::before,.service-list article::after{display:none!important}
+}
