@@ -37,6 +37,37 @@ qsa('.faq-list details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)q
 const year=qs('#year');if(year)year.textContent=new Date().getFullYear();
 qs('#leadForm')?.addEventListener('submit',e=>{e.preventDefault();const name=qs('#name')?.value.trim()||'',type=qs('#type')?.value||'',msg=qs('#message')?.value.trim()||'';const text=`Olá Yagho, vim pelo seu site.\n\nMeu nome: ${name}\nTipo de negócio: ${type}\n\nProjeto: ${msg}`;window.open(`https://wa.me/5553999563554?text=${encodeURIComponent(text)}`,'_blank','noopener')});
 
+// Letreiro final: um único loop via requestAnimationFrame para manter o mesmo comportamento em Safari/iPhone e desktop.
+const contactTrack=qs('.contact-track');
+if(contactTrack){
+  contactTrack.style.setProperty('animation','none','important');
+  if(reduce){
+    contactTrack.style.setProperty('transform','translate3d(0,0,0)','important');
+  }else{
+    let marqueeOffset=0,marqueeLast=0,marqueeWidth=0;
+    const measureMarquee=()=>{marqueeWidth=contactTrack.scrollWidth/2};
+    const startMarquee=()=>{
+      measureMarquee();
+      if('ResizeObserver' in window)new ResizeObserver(measureMarquee).observe(contactTrack);
+      else addEventListener('resize',measureMarquee,{passive:true});
+      const runMarquee=now=>{
+        if(!marqueeLast)marqueeLast=now;
+        const dt=Math.min((now-marqueeLast)/1000,.05);
+        marqueeLast=now;
+        const speed=innerWidth<=720?52:36;
+        if(marqueeWidth>0){
+          marqueeOffset=(marqueeOffset+speed*dt)%marqueeWidth;
+          contactTrack.style.setProperty('transform',`translate3d(${-marqueeOffset}px,0,0)`,'important');
+        }
+        requestAnimationFrame(runMarquee);
+      };
+      requestAnimationFrame(runMarquee);
+    };
+    if(document.fonts?.ready)document.fonts.ready.then(()=>requestAnimationFrame(startMarquee));
+    else requestAnimationFrame(startMarquee);
+  }
+}
+
 // No celular, o ticker superior fica estático e legível para evitar cortes no Safari/iPhone.
 const topTicker=qs('.ticker');
 if(topTicker){
