@@ -66,33 +66,33 @@ function initVideos(){
   const videos=qsa('video[data-video-src]');
   const hero=qs('.hero-video');
   const closing=qs('.closing-video');
-
-  if(closing && window.matchMedia('(max-width: 720px)').matches){
-    closing.dataset.videoSrc='https://videos.pexels.com/video-files/7841614/7841614-hd_1080_1920_30fps.mp4';
-  }
+  if(closing&&hero)closing.dataset.videoSrc=hero.dataset.videoSrc;
 
   const containerOf=v=>v.closest('.hero-video-wrap,.closing-media');
-  const markReady=v=>{
+  const show=v=>{
+    v.hidden=false;
     v.classList.add('media-ready');
     containerOf(v)?.classList.remove('media-error');
   };
-  const markError=v=>{
+  const fail=v=>{
+    v.hidden=true;
     v.classList.remove('media-ready');
     containerOf(v)?.classList.add('media-error');
     try{v.pause();}catch{}
   };
 
+  // Desktop and mobile use exactly the same media source and behavior.
   videos.forEach(v=>{
+    v.hidden=true;
     v.muted=true;
     v.loop=true;
     v.playsInline=true;
     v.setAttribute('muted','');
     v.setAttribute('loop','');
     v.setAttribute('playsinline','');
-    v.classList.remove('media-ready');
-    v.addEventListener('loadeddata',()=>markReady(v));
-    v.addEventListener('canplay',()=>markReady(v));
-    v.addEventListener('error',()=>markError(v));
+    v.addEventListener('loadeddata',()=>show(v),{once:true});
+    v.addEventListener('canplay',()=>show(v),{once:true});
+    v.addEventListener('error',()=>fail(v));
   });
 
   const load=v=>{
@@ -104,29 +104,28 @@ function initVideos(){
   const play=v=>{
     load(v);
     const attempt=()=>v.play()?.catch?.(()=>{});
-    if(v.readyState>=2){markReady(v);attempt();}
+    if(v.readyState>=2){show(v);attempt();}
     else v.addEventListener('canplay',attempt,{once:true});
   };
 
-  if(hero) play(hero);
+  if(hero)play(hero);
 
   const lazyVideos=videos.filter(v=>v!==hero);
   if(!('IntersectionObserver'in window)){
     lazyVideos.forEach(play);
   }else{
     const io=new IntersectionObserver(entries=>entries.forEach(({target,isIntersecting})=>{
-      if(isIntersecting) play(target);
-      else if(target.dataset.loaded==='true') target.pause();
+      if(isIntersecting)play(target);
+      else if(target.dataset.loaded==='true')target.pause();
     }),{rootMargin:'300px 0px',threshold:.02});
     lazyVideos.forEach(v=>io.observe(v));
   }
 
   document.addEventListener('visibilitychange',()=>{
     if(document.hidden){videos.forEach(v=>v.pause());return;}
-    if(hero) play(hero);
+    if(hero)play(hero);
   });
 }
-
 function initRevealFallback(){
   const items=qsa('[data-reveal]');
   qsa('.hero-line > span').forEach(el=>el.style.transform='none');
