@@ -30,6 +30,11 @@
 .case-cta{position:relative}
 .case-cta::after{content:"";position:absolute;left:0;bottom:-1px;width:0;height:1px;background:var(--case-accent);transition:width .5s var(--ease)}
 .case-cta:hover::after{width:100%}
+.case-topline span{min-width:0}
+.case-media img[src$=".svg"]{background:#ebe6dc}
+
+/* Força setas em apresentação de texto no iOS, evitando emoji azul */
+.nav-cta i,.btn i,.inline-link i,.case-open i,.case-cta i,.service-list>article>i,.contact-marquee i{font-family:"DM Mono",monospace;font-variant-emoji:text}
 
 /* Serviços e FAQ mais táteis */
 .service-list article::after{content:"";position:absolute;left:0;top:50%;width:2px;height:0;background:var(--accent);transform:translateY(-50%);transition:height .35s var(--ease)}
@@ -60,6 +65,18 @@
   .form-head{height:50px}
   .service-list article::after{display:none}
   .hero-title .accent-line>span{text-shadow:none}
+  .case-topline{align-items:center}
+  .case-topline span:last-child{max-width:52%;text-align:right;white-space:normal;line-height:1.35}
+  .case-media img[src$=".svg"]{aspect-ratio:16/10;object-fit:cover;object-position:center top}
+}
+
+@media(max-width:390px){
+  .case-topline{gap:8px}
+  .case-topline span:last-child{max-width:50%}
+}
+
+@supports not (height:100dvh){
+  @media(max-width:1120px){.nav.open{height:100vh}}
 }
 
 @media(prefers-reduced-motion:reduce){
