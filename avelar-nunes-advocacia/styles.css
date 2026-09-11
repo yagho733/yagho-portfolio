@@ -2,12 +2,17 @@
 @import url("styles-2.css");
 @import url("styles-3.css");
 
-/* Definitive cross-device media + arrow fix */
+/* Definitive cross-device media fix */
 .hero-video,.closing-video{visibility:hidden!important;opacity:0!important}
 .hero-video.media-ready,.closing-video.media-ready{visibility:visible!important;opacity:1!important}
 .hero-video-wrap.media-error .hero-video,.closing-media.media-error .closing-video{display:none!important}
 .closing-media{background:center/cover no-repeat url("https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=1800&q=82"),#25241f}
-.closing-link>span{display:none!important}
-.closing-link::after{content:"";position:relative;display:inline-block;width:11px;height:11px;margin-left:10px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:translateY(1px)}
-.closing-link::before{content:"";position:absolute;width:10px;height:1px;background:currentColor;right:1px;top:50%;transform:translateY(-50%) rotate(-45deg);transform-origin:right center}
-.closing-link{position:relative;padding-right:18px}
+
+/* Draw arrows with CSS so iOS can never replace them with emoji. */
+.header-link>span,.panel-link>span,.profile-link>span,.closing-link>span,.text-link>span,.insight-main i,.insight-list i{display:none!important}
+.header-link,.panel-link,.profile-link,.closing-link,.text-link{position:relative;padding-right:18px}
+.header-link::after,.panel-link::after,.profile-link::after,.closing-link::after,.text-link::after,.insight-main div::after,.insight-list a::after{content:"";display:inline-block;width:8px;height:8px;margin-left:10px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:translateY(-1px)}
+.header-link::before,.panel-link::before,.profile-link::before,.closing-link::before,.text-link::before{content:"";position:absolute;width:10px;height:1px;background:currentColor;right:1px;top:50%;transform:translateY(-50%) rotate(-45deg);transform-origin:right center}
+.text-link::after{transform:translateY(-3px) rotate(90deg)}
+.text-link::before{transform:translateY(-50%) rotate(45deg)}
+.insight-main div::after,.insight-list a::after{justify-self:end;align-self:center}
