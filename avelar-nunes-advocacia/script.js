@@ -64,6 +64,37 @@ function initScrollSpy(){
 
 function initVideos(){
   const videos=qsa('video[data-video-src]');
+  const hero=qs('.hero-video');
+  const closing=qs('.closing-video');
+
+  if(closing && window.matchMedia('(max-width: 720px)').matches){
+    closing.dataset.videoSrc='https://videos.pexels.com/video-files/7841614/7841614-hd_1080_1920_30fps.mp4';
+  }
+
+  const containerOf=v=>v.closest('.hero-video-wrap,.closing-media');
+  const markReady=v=>{
+    v.classList.add('media-ready');
+    containerOf(v)?.classList.remove('media-error');
+  };
+  const markError=v=>{
+    v.classList.remove('media-ready');
+    containerOf(v)?.classList.add('media-error');
+    try{v.pause();}catch{}
+  };
+
+  videos.forEach(v=>{
+    v.muted=true;
+    v.loop=true;
+    v.playsInline=true;
+    v.setAttribute('muted','');
+    v.setAttribute('loop','');
+    v.setAttribute('playsinline','');
+    v.classList.remove('media-ready');
+    v.addEventListener('loadeddata',()=>markReady(v));
+    v.addEventListener('canplay',()=>markReady(v));
+    v.addEventListener('error',()=>markError(v));
+  });
+
   const load=v=>{
     if(v.dataset.loaded==='true')return;
     v.src=v.dataset.videoSrc;
@@ -73,34 +104,22 @@ function initVideos(){
   const play=v=>{
     load(v);
     const attempt=()=>v.play()?.catch?.(()=>{});
-    if(v.readyState>=2) attempt();
+    if(v.readyState>=2){markReady(v);attempt();}
     else v.addEventListener('canplay',attempt,{once:true});
   };
 
-  // Hero must behave the same on desktop and mobile: real video, autoplay, muted, loop and inline.
-  const hero=qs('.hero-video');
   if(hero) play(hero);
 
   const lazyVideos=videos.filter(v=>v!==hero);
   if(!('IntersectionObserver'in window)){
     lazyVideos.forEach(play);
-    return;
+  }else{
+    const io=new IntersectionObserver(entries=>entries.forEach(({target,isIntersecting})=>{
+      if(isIntersecting) play(target);
+      else if(target.dataset.loaded==='true') target.pause();
+    }),{rootMargin:'300px 0px',threshold:.02});
+    lazyVideos.forEach(v=>io.observe(v));
   }
-  const io=new IntersectionObserver(entries=>entries.forEach(({target,isIntersecting})=>{
-    if(isIntersecting) play(target);
-    else if(target.dataset.loaded==='true') target.pause();
-  }),{rootMargin:'300px 0px',threshold:.02});
-  lazyVideos.forEach(v=>io.observe(v));
-
-  videos.forEach(v=>{
-    v.muted=true;
-    v.loop=true;
-    v.playsInline=true;
-    v.setAttribute('muted','');
-    v.setAttribute('loop','');
-    v.setAttribute('playsinline','');
-    v.addEventListener('error',()=>v.closest('.hero-video-wrap,.closing-media')?.classList.add('media-error'));
-  });
 
   document.addEventListener('visibilitychange',()=>{
     if(document.hidden){videos.forEach(v=>v.pause());return;}
