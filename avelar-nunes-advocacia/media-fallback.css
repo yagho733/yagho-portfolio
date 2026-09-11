@@ -15,13 +15,76 @@
   background-image:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.7)),url("https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=1800&q=82");
 }
 
+/* Safari/iOS can render native error UI inside a broken video.
+   Keep the element visually hidden until real media data is available. */
 .hero-video,
 .closing-video{
-  color:transparent;
-  font-size:0;
+  visibility:hidden!important;
+  opacity:0!important;
+  transition:opacity .45s ease;
+  color:transparent!important;
+  font-size:0!important;
+}
+
+.hero-video.media-ready,
+.closing-video.media-ready{
+  visibility:visible!important;
+  opacity:1!important;
 }
 
 .hero-video-wrap.media-error .hero-video,
 .closing-media.media-error .closing-video{
-  display:none!important;
+  visibility:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+}
+
+/* Never let iOS turn the northeast arrow into a blue emoji icon. */
+.header-link > span,
+.panel-link > span,
+.profile-link > span,
+.closing-link > span{
+  position:relative;
+  display:inline-block;
+  width:12px;
+  height:12px;
+  flex:0 0 12px;
+  font-size:0!important;
+  line-height:0;
+  color:#c5a782;
+  vertical-align:middle;
+}
+
+.header-link > span::before,
+.panel-link > span::before,
+.profile-link > span::before,
+.closing-link > span::before{
+  content:"";
+  position:absolute;
+  width:9px;
+  height:1px;
+  left:1px;
+  top:6px;
+  background:currentColor;
+  transform:rotate(-45deg);
+  transform-origin:center;
+}
+
+.header-link > span::after,
+.panel-link > span::after,
+.profile-link > span::after,
+.closing-link > span::after{
+  content:"";
+  position:absolute;
+  width:5px;
+  height:5px;
+  right:1px;
+  top:1px;
+  border-top:1px solid currentColor;
+  border-right:1px solid currentColor;
+}
+
+@media(max-width:720px){
+  .closing-link{align-items:center;gap:10px;}
+  .closing-link > span{width:11px;height:11px;flex-basis:11px;}
 }
