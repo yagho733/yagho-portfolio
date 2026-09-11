@@ -1,4 +1,13 @@
 @import url("styles-1.css");
 @import url("styles-2.css");
 @import url("styles-3.css");
-@import url("media-fallback.css");
+
+/* Definitive cross-device media + arrow fix */
+.hero-video,.closing-video{visibility:hidden!important;opacity:0!important}
+.hero-video.media-ready,.closing-video.media-ready{visibility:visible!important;opacity:1!important}
+.hero-video-wrap.media-error .hero-video,.closing-media.media-error .closing-video{display:none!important}
+.closing-media{background:center/cover no-repeat url("https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=1800&q=82"),#25241f}
+.closing-link>span{display:none!important}
+.closing-link::after{content:"";position:relative;display:inline-block;width:11px;height:11px;margin-left:10px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:translateY(1px)}
+.closing-link::before{content:"";position:absolute;width:10px;height:1px;background:currentColor;right:1px;top:50%;transform:translateY(-50%) rotate(-45deg);transform-origin:right center}
+.closing-link{position:relative;padding-right:18px}
