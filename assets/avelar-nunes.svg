@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" role="img" aria-labelledby="title desc">
+  <title id="title">Prévia do projeto Avelar Nunes Advocacia</title>
+  <desc id="desc">Composição editorial em marfim, preto e bronze representando a página inicial do escritório.</desc>
+  <defs>
+    <linearGradient id="photo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#75634f"/>
+      <stop offset=".45" stop-color="#473d32"/>
+      <stop offset="1" stop-color="#1e1b17"/>
+    </linearGradient>
+    <linearGradient id="shade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000" stop-opacity=".05"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".55"/>
+    </linearGradient>
+  </defs>
+  <rect width="1440" height="900" fill="#ebe6dc"/>
+  <rect x="0" y="0" width="1440" height="82" fill="#f1ede5"/>
+  <rect x="0" y="81" width="1440" height="1" fill="#b99b72" fill-opacity=".55"/>
+  <text x="72" y="45" fill="#181713" font-family="Georgia,serif" font-size="25" letter-spacing="1.5">AVELAR NUNES</text>
+  <text x="73" y="66" fill="#4b4740" font-family="Arial,sans-serif" font-size="9" letter-spacing="4">ADVOCACIA</text>
+  <g fill="#58534b" font-family="Arial,sans-serif" font-size="10" letter-spacing="1.4">
+    <text x="770" y="48">ESCRITÓRIO</text><text x="880" y="48">ATUAÇÃO</text><text x="970" y="48">SETORES</text><text x="1055" y="48">PROFISSIONAIS</text><text x="1180" y="48">INSIGHTS</text>
+  </g>
+  <rect x="1260" y="24" width="118" height="35" rx="1" fill="#1b1916"/>
+  <text x="1281" y="46" fill="#f2eee6" font-family="Arial,sans-serif" font-size="9" letter-spacing="1.2">FALE CONOSCO</text>
+  <g transform="translate(74 158)">
+    <text x="0" y="0" fill="#81796e" font-family="Arial,sans-serif" font-size="9" letter-spacing="2.2">EMPRESARIAL · PATRIMÔNIO · CONTENCIOSO</text>
+    <text x="0" y="112" fill="#1b1916" font-family="Georgia,serif" font-size="72">Estratégia jurídica</text>
+    <text x="0" y="190" fill="#1b1916" font-family="Georgia,serif" font-size="72">para decisões que</text>
+    <text x="0" y="268" fill="#8b6947" font-family="Georgia,serif" font-size="72" font-style="italic">definem o próximo</text>
+    <text x="0" y="346" fill="#1b1916" font-family="Georgia,serif" font-size="72">movimento.</text>
+    <text x="0" y="424" fill="#665f55" font-family="Arial,sans-serif" font-size="15">Assessoria jurídica para empresas, famílias e empreendedores</text>
+    <text x="0" y="451" fill="#665f55" font-family="Arial,sans-serif" font-size="15">em decisões societárias, contratuais, patrimoniais e contenciosas.</text>
+    <line x1="0" y1="518" x2="520" y2="518" stroke="#b9afa0" stroke-width="1"/>
+    <g fill="#4e4942" font-family="Arial,sans-serif" font-size="9" letter-spacing="1.8">
+      <text x="0" y="552">EMPRESARIAL</text><text x="132" y="552">CONTRATOS</text><text x="248" y="552">SUCESSÃO</text><text x="350" y="552">CONTENCIOSO</text>
+    </g>
+  </g>
+  <g transform="translate(850 112)">
+    <rect width="520" height="686" fill="url(#photo)"/>
+    <rect width="520" height="686" fill="url(#shade)"/>
+    <path d="M55 515 L465 515" stroke="#d5c6b4" stroke-opacity=".28"/>
+    <text x="55" y="565" fill="#eadfce" font-family="Arial,sans-serif" font-size="9" letter-spacing="2">PELOTAS · RS</text>
+    <text x="55" y="600" fill="#f4ede3" font-family="Georgia,serif" font-size="28">Estratégia antes</text>
+    <text x="55" y="636" fill="#f4ede3" font-family="Georgia,serif" font-size="28">da resposta.</text>
+    <circle cx="455" cy="72" r="24" fill="none" stroke="#c2a37b" stroke-width="1"/>
+    <path d="M448 72h14M457 67l5 5-5 5" fill="none" stroke="#c2a37b" stroke-width="1.5"/>
+  </g>
+</svg>
