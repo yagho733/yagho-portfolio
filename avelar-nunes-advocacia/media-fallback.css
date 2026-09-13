@@ -92,6 +92,39 @@
   pointer-events:none!important;
 }
 
+/* Primeiro vídeo: rótulos sempre inteiros e legíveis, inclusive no iPhone. */
+.hero-video-label{
+  z-index:4!important;
+  box-sizing:border-box;
+  align-items:flex-end;
+  line-height:1.45;
+  text-shadow:0 1px 10px rgba(0,0,0,.42);
+}
+.hero-video-label span{
+  min-width:0;
+  white-space:normal;
+}
+.hero-video-label span:last-child{
+  text-align:right;
+}
+
+/* Segundo vídeo: recebe uma assinatura editorial própria para não parecer repetição do hero. */
+.closing-inner::before{
+  content:"PRESENÇA JURÍDICA  /  Estratégia, proximidade e leitura de contexto para decisões que exigem segurança.";
+  position:absolute;
+  top:22%;
+  right:var(--pad);
+  z-index:3;
+  width:min(430px,34vw);
+  padding-top:14px;
+  border-top:1px solid rgba(255,255,255,.36);
+  color:rgba(244,240,231,.82);
+  font:500 10px/1.75 var(--sans);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  text-shadow:0 2px 14px rgba(0,0,0,.5);
+}
+
 /* Never let iOS turn the northeast arrow into a blue emoji icon. */
 .header-link > span,
 .panel-link > span,
@@ -141,6 +174,51 @@
   .closing-link{align-items:center;gap:10px;}
   .closing-link > span{width:11px;height:11px;flex-basis:11px;}
   .hero-video-wrap::before,.closing-media::before{animation-duration:11s}
+
+  .hero-video-label{
+    left:18px!important;
+    right:18px!important;
+    bottom:max(18px,env(safe-area-inset-bottom))!important;
+    display:grid!important;
+    grid-template-columns:auto minmax(0,1fr);
+    gap:12px!important;
+    padding-top:11px!important;
+    font-size:8px!important;
+    letter-spacing:.11em!important;
+  }
+  .hero-video-label span:first-child{
+    white-space:nowrap;
+  }
+  .hero-video-label span:last-child{
+    max-width:100%;
+    justify-self:end;
+  }
+
+  .closing-inner::before{
+    top:19%;
+    left:20px;
+    right:20px;
+    width:auto;
+    max-width:360px;
+    padding-top:11px;
+    font-size:8px;
+    line-height:1.7;
+    letter-spacing:.1em;
+  }
+}
+
+@media(max-width:390px){
+  .hero-video-label{
+    grid-template-columns:1fr;
+    gap:5px!important;
+  }
+  .hero-video-label span:last-child{
+    justify-self:start;
+    text-align:left;
+  }
+  .closing-inner::before{
+    top:17%;
+  }
 }
 
 @media(prefers-reduced-motion:reduce){
