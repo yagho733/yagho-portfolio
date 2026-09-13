@@ -8,6 +8,39 @@
 .hero-video-wrap.media-error .hero-video,.closing-media.media-error .closing-video{display:none!important}
 .closing-media{background:center/cover no-repeat url("https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=1800&q=82"),#25241f}
 
+/* Ajustes pedidos: primeiro vídeo legível no mobile + foto fixa no fechamento. */
+.closing-media{
+  background-image:linear-gradient(180deg,rgba(0,0,0,.06),rgba(0,0,0,.18)),url("https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=2200&q=84");
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+}
+.closing-video{display:none!important}
+
+@media(max-width:720px){
+  .hero-video-label{
+    left:18px!important;
+    right:18px!important;
+    bottom:18px!important;
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    justify-content:start!important;
+    gap:6px!important;
+    max-width:calc(100% - 36px)!important;
+    line-height:1.4!important;
+  }
+  .hero-video-label span{
+    display:block!important;
+    width:100%!important;
+    max-width:100%!important;
+    white-space:normal!important;
+    overflow:visible!important;
+    overflow-wrap:anywhere!important;
+  }
+  .hero-video-label span:last-child{max-width:28ch!important}
+  .closing-media{background-position:center center}
+}
+
 /* Draw arrows with CSS so iOS can never replace them with emoji. */
 .header-link>span,.panel-link>span,.profile-link>span,.closing-link>span,.text-link>span,.insight-main i,.insight-list i{display:none!important}
 .header-link,.panel-link,.profile-link,.closing-link,.text-link{position:relative;padding-right:18px}
