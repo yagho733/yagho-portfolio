@@ -31,18 +31,21 @@ const qs=(s,c=document)=>c.querySelector(s),qsa=(s,c=document)=>[...c.querySelec
   const brasaUrl='https://brasa-77.vercel.app/';
   qsa('a').forEach(a=>{
     const href=a.getAttribute('href')||'';
-    if(href.includes('https-github-com-yagho-barbearia-du.vercel.app'))a.href=brasaUrl;
+    if(href.includes('https-github-com-yagho-barbearia-du.vercel.app')||href.includes('brasa-77.vercel.app'))a.href=brasaUrl;
   });
 
-  const gymImg=qs('#power-gym .case-media img');
+  const gym=qs('#power-gym');
+  const gymImg=qs('.case-media img',gym);
   if(gymImg){
-    const reliable='https://raw.githubusercontent.com/yagho733/yagho-portfolio/main/assets/powergym.png?v=20260913';
-    gymImg.src=reliable;
+    gymImg.src='assets/powergym.png?v=20260913b';
     gymImg.removeAttribute('srcset');
-    gymImg.addEventListener('error',()=>{
-      gymImg.style.opacity='0';
-      gymImg.closest('.case-media')?.classList.add('asset-fallback');
-    },{once:true});
+    gymImg.style.filter='brightness(1.28) contrast(.98) saturate(1.06)';
+    gymImg.style.objectPosition='center top';
+  }
+  if(gym){
+    const st=document.createElement('style');
+    st.textContent=`#power-gym .case-media::after{background:linear-gradient(180deg,rgba(0,0,0,.05),transparent 24%,transparent 78%,rgba(0,0,0,.12))!important}@media(max-width:720px){#power-gym .case-media img{filter:brightness(1.38) contrast(.96) saturate(1.06)!important}}`;
+    document.head.appendChild(st);
   }
 })();
 
