@@ -33,6 +33,12 @@
 .case-topline span{min-width:0}
 .case-media img[src$=".svg"]{background:#ebe6dc}
 
+/* Power Gym: imagem resiliente mesmo se o elemento img falhar no CDN/cache. */
+.case-gym .case-media{
+  background:#08090c url("https://raw.githubusercontent.com/yagho733/yagho-portfolio/main/assets/powergym.png?v=20260913") center top/cover no-repeat;
+}
+.case-gym .case-media.asset-fallback img{opacity:0!important}
+
 /* Força setas em apresentação de texto no iOS, evitando emoji azul */
 .nav-cta i,.btn i,.inline-link i,.case-open i,.case-cta i,.service-list>article>i,.contact-marquee i{font-family:"DM Mono",monospace;font-variant-emoji:text}
 
