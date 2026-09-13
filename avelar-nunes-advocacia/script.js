@@ -1,3 +1,12 @@
+(()=>{
+  if(!document.querySelector('link[href="media-fallback.css"]')){
+    const link=document.createElement('link');
+    link.rel='stylesheet';
+    link.href='media-fallback.css?v=20260913';
+    document.head.appendChild(link);
+  }
+})();
+
 const qs=(s,c=document)=>c.querySelector(s);
 const qsa=(s,c=document)=>[...c.querySelectorAll(s)];
 const cfg=window.AVELAR_CONFIG||{};
@@ -81,7 +90,6 @@ function initVideos(){
     try{v.pause();}catch{}
   };
 
-  // Desktop and mobile use exactly the same media source and behavior.
   videos.forEach(v=>{
     v.hidden=true;
     v.muted=true;
