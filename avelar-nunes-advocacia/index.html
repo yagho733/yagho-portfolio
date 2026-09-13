@@ -24,7 +24,26 @@
   <link rel="preconnect" href="https://videos.pexels.com" />
   <link rel="preconnect" href="https://images.unsplash.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Libre+Caslon+Display&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=20260913-final2" />
+  <style id="avelar-closing-final">
+    .closing-media{position:absolute!important;inset:0!important;display:block!important;visibility:visible!important;opacity:1!important;overflow:hidden!important;background:#25241f!important}
+    .closing-photo{position:absolute!important;inset:0!important;z-index:0!important;display:block!important;width:100%!important;height:100%!important;max-width:none!important;object-fit:cover!important;object-position:center center!important;filter:saturate(.72) brightness(.62) contrast(1.04)!important}
+    .closing-shade{position:absolute!important;inset:0!important;z-index:1!important;background:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.62))!important}
+    .closing-media::after,.closing-inner::before{content:none!important;display:none!important}
+    .closing-signature{position:absolute;top:24%;right:var(--pad);z-index:2;width:min(390px,34vw);padding-top:14px;border-top:1px solid rgba(255,255,255,.34);color:rgba(255,255,255,.92);font-family:var(--sans);text-transform:uppercase;text-align:right;pointer-events:none}
+    .closing-signature strong,.closing-signature span{display:block;font-size:10px;line-height:1.7;letter-spacing:.12em}
+    .closing-signature strong{font-weight:500}.closing-signature span{margin-top:2px;font-weight:400}
+    .closing-inner{z-index:3!important}
+    @media(max-width:720px){
+      .hero-video-label{left:18px!important;right:18px!important;bottom:max(18px,env(safe-area-inset-bottom))!important;display:grid!important;grid-template-columns:1fr!important;gap:6px!important;max-width:calc(100% - 36px)!important;line-height:1.4!important}
+      .hero-video-label span{display:block!important;width:100%!important;max-width:100%!important;white-space:normal!important;overflow:visible!important;overflow-wrap:anywhere!important;text-align:left!important}
+      .hero-video-label span:last-child{max-width:28ch!important}
+      .closing-photo{object-position:center center!important}
+      .closing-signature{top:20%;left:20px;right:20px;width:auto;text-align:left}
+      .closing-signature strong,.closing-signature span{font-size:8px;line-height:1.65}
+    }
+    @media(max-width:390px){.closing-signature{top:17%}}
+  </style>
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -298,8 +317,12 @@
 
     <section class="closing" id="contato">
       <div class="closing-media">
-        <video class="closing-video" muted loop playsinline autoplay preload="metadata" poster="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=80" data-video-src="https://videos.pexels.com/video-files/3209818/3209818-uhd_2560_1440_25fps.mp4"></video>
+        <img class="closing-photo" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=2200&q=84" alt="Ambiente de escritório contemporâneo" loading="eager" decoding="async" />
         <div class="closing-shade"></div>
+        <div class="closing-signature" aria-hidden="true">
+          <strong>PRESENÇA JURÍDICA</strong>
+          <span>Relações construídas com clareza e continuidade.</span>
+        </div>
       </div>
       <div class="closing-inner">
         <div class="section-index light" data-reveal><span>08</span><span>Contato</span></div>
@@ -337,10 +360,10 @@
     </div>
   </footer>
 
-  <script src="site-config.js"></script>
+  <script src="site-config.js?v=20260913-final2"></script>
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="script.js"></script>
+  <script src="script.js?v=20260913-final2"></script>
 </body>
 </html>
