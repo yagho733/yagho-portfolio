@@ -1,4 +1,31 @@
 const qs=(s,c=document)=>c.querySelector(s),qsa=(s,c=document)=>[...c.querySelectorAll(s)];
+
+// Forma Arquitetura — projeto em destaque no portfólio.
+// Inserido via JS para preservar a estrutura visual existente sem reescrever o layout-base.
+(()=>{
+  const cases=qs('.cases');
+  if(cases&&!qs('#forma-arquitetura',cases)){
+    const forma=document.createElement('article');
+    forma.id='forma-arquitetura';
+    forma.className='case case-forma';
+    forma.style.setProperty('--case-accent','#b87552');
+    forma.setAttribute('data-reveal','');
+    forma.setAttribute('data-case','');
+    forma.innerHTML=`<a class="case-media" href="https://forma-arquitetura.vercel.app/" target="_blank" rel="noopener"><div class="case-topline"><span>02 / ARQUITETURA</span><span>PORTFÓLIO INSTITUCIONAL</span></div><img src="https://images.pexels.com/photos/13752348/pexels-photo-13752348.jpeg?auto=compress&cs=tinysrgb&w=1800" alt="Projeto Forma Arquitetura — site institucional e portfólio para arquitetura" width="1440" height="900" loading="lazy" decoding="async"><span class="case-open">Abrir projeto <i>↗︎</i></span></a><div class="case-info"><div class="case-heading"><span>02</span><h3>Forma Arquitetura</h3></div><p>Site institucional e portfólio com direção editorial, projetos em destaque, processo de trabalho e experiência responsiva pensada para escritórios de arquitetura.</p><a class="case-cta" href="https://forma-arquitetura.vercel.app/" target="_blank" rel="noopener" aria-label="Ver projeto Forma Arquitetura ao vivo"><span>VER SITE</span><i>↗︎</i></a><dl><div><dt>FOCO</dt><dd>Portfólio + autoridade</dd></div><div><dt>STACK</dt><dd>HTML / CSS / JS</dd></div><div><dt>EXPERIÊNCIA</dt><dd>Editorial + responsiva</dd></div></dl></div>`;
+    const firstCase=qs('.case',cases);
+    if(firstCase)firstCase.insertAdjacentElement('afterend',forma);else cases.appendChild(forma);
+
+    qsa('.case',cases).forEach((card,i)=>{
+      const n=String(i+1).padStart(2,'0');
+      const heading=qs('.case-heading > span',card);if(heading)heading.textContent=n;
+      const top=qs('.case-topline > span:first-child',card);
+      if(top){const label=(top.textContent.split('/')[1]||'').trim();top.textContent=`${n} / ${label}`;}
+    });
+  }
+  const proof=qs('.hero-proof > div:first-child b');if(proof)proof.textContent='06';
+  const stageCount=qs('.stage-index b');if(stageCount)stageCount.textContent='01—06';
+})();
+
 const nav=qs('[data-nav]'),menu=qs('.menu'),panel=qs('.mobile-panel'),progress=qs('.scroll-progress span'),reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,fine=matchMedia('(hover:hover) and (pointer:fine)').matches,pageRegions=qsa('main,footer'),ioSupported='IntersectionObserver'in window;
 requestAnimationFrame(()=>document.body.classList.add('ready'));
 
