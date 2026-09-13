@@ -17,7 +17,7 @@
   background-image:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.7)),url("https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=1800&q=82");
 }
 
-/* Se a CDN do vídeo falhar, o fundo continua vivo e premium em vez de ficar parado/quebrado. */
+/* Se a CDN do vídeo falhar, o fundo continua vivo em vez de ficar parado/quebrado. */
 .hero-video-wrap::before,
 .closing-media::before{
   content:"";
@@ -54,8 +54,7 @@
   72%,100%{transform:translateX(120%);opacity:0}
 }
 
-/* Safari/iOS can render native error UI inside a broken video.
-   Keep the element visually hidden until real media data is available. */
+/* Vídeo decorativo: roda quando o navegador permite e não recebe interação do usuário. */
 .hero-video,
 .closing-video{
   visibility:hidden!important;
@@ -63,6 +62,21 @@
   transition:opacity .45s ease;
   color:transparent!important;
   font-size:0!important;
+  pointer-events:none!important;
+  -webkit-user-select:none!important;
+  user-select:none!important;
+}
+.hero-video::-webkit-media-controls,
+.closing-video::-webkit-media-controls,
+.hero-video::-webkit-media-controls-panel,
+.closing-video::-webkit-media-controls-panel,
+.hero-video::-webkit-media-controls-start-playback-button,
+.closing-video::-webkit-media-controls-start-playback-button,
+.hero-video::-webkit-media-controls-play-button,
+.closing-video::-webkit-media-controls-play-button{
+  display:none!important;
+  -webkit-appearance:none!important;
+  opacity:0!important;
 }
 
 .hero-video.media-ready,
