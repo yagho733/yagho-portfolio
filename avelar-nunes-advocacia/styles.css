@@ -16,6 +16,24 @@
   background-repeat:no-repeat;
 }
 .closing-video{display:none!important}
+.closing-media::after{
+  content:"PRESENÇA JURÍDICA\A Relações construídas com clareza e continuidade.";
+  white-space:pre-line;
+  position:absolute;
+  top:24%;
+  right:var(--pad);
+  z-index:1;
+  width:min(390px,34vw);
+  padding-top:14px;
+  border-top:1px solid rgba(255,255,255,.34);
+  color:rgba(255,255,255,.9);
+  font-family:var(--sans);
+  font-size:10px;
+  line-height:1.7;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  text-align:right;
+}
 
 @media(max-width:720px){
   .hero-video-label{
@@ -39,6 +57,15 @@
   }
   .hero-video-label span:last-child{max-width:28ch!important}
   .closing-media{background-position:center center}
+  .closing-media::after{
+    top:20%;
+    left:20px;
+    right:20px;
+    width:auto;
+    font-size:8px;
+    line-height:1.65;
+    text-align:left;
+  }
 }
 
 /* Draw arrows with CSS so iOS can never replace them with emoji. */
