@@ -26,6 +26,26 @@ const qs=(s,c=document)=>c.querySelector(s),qsa=(s,c=document)=>[...c.querySelec
   const stageCount=qs('.stage-index b');if(stageCount)stageCount.textContent='01—06';
 })();
 
+// Revisão de assets/links do portfólio.
+(()=>{
+  const brasaUrl='https://brasa-77.vercel.app/';
+  qsa('a').forEach(a=>{
+    const href=a.getAttribute('href')||'';
+    if(href.includes('https-github-com-yagho-barbearia-du.vercel.app'))a.href=brasaUrl;
+  });
+
+  const gymImg=qs('#power-gym .case-media img');
+  if(gymImg){
+    const reliable='https://raw.githubusercontent.com/yagho733/yagho-portfolio/main/assets/powergym.png?v=20260913';
+    gymImg.src=reliable;
+    gymImg.removeAttribute('srcset');
+    gymImg.addEventListener('error',()=>{
+      gymImg.style.opacity='0';
+      gymImg.closest('.case-media')?.classList.add('asset-fallback');
+    },{once:true});
+  }
+})();
+
 const nav=qs('[data-nav]'),menu=qs('.menu'),panel=qs('.mobile-panel'),progress=qs('.scroll-progress span'),reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,fine=matchMedia('(hover:hover) and (pointer:fine)').matches,pageRegions=qsa('main,footer'),ioSupported='IntersectionObserver'in window;
 requestAnimationFrame(()=>document.body.classList.add('ready'));
 
