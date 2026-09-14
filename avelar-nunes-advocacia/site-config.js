@@ -85,3 +85,56 @@ window.AVELAR_CONFIG = {
     if (heroVideo.error) useFallback();
   });
 })();
+
+// Garante autoplay do primeiro vídeo no mobile, inclusive Safari/iPhone.
+(() => {
+  const resumeHeroVideo = () => {
+    const video = document.querySelector('.hero-video[data-video-src]');
+    if (!video) return;
+
+    video.muted = true;
+    video.defaultMuted = true;
+    video.loop = true;
+    video.autoplay = true;
+    video.playsInline = true;
+    video.setAttribute('muted', '');
+    video.setAttribute('autoplay', '');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+    video.preload = 'auto';
+
+    if (!video.src && video.dataset.videoSrc) {
+      video.src = video.dataset.videoSrc;
+      video.dataset.loaded = 'true';
+      video.load();
+    }
+
+    const play = () => {
+      const promise = video.play();
+      if (promise && typeof promise.catch === 'function') promise.catch(() => {});
+    };
+
+    play();
+    video.addEventListener('canplay', play, { once: true });
+    video.addEventListener('loadedmetadata', play, { once: true });
+
+    const unlock = () => {
+      play();
+      document.removeEventListener('touchstart', unlock);
+      document.removeEventListener('pointerdown', unlock);
+    };
+    document.addEventListener('touchstart', unlock, { passive: true, once: true });
+    document.addEventListener('pointerdown', unlock, { passive: true, once: true });
+
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) play();
+    });
+    window.addEventListener('pageshow', play);
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => setTimeout(resumeHeroVideo, 0), { once: true });
+  } else {
+    setTimeout(resumeHeroVideo, 0);
+  }
+})();
